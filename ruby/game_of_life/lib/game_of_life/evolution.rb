@@ -5,11 +5,14 @@ module GameOfLife
 
     def initialize generation
       @generation       = generation
-      @next_generation  = generation.dup
+      @next_generation  = Generation.new
     end
 
-    def evolve
-      # Evolutionary process here...
+    def evolutionary_process
+      generation.map(&:dup).each do |cell|
+        cell.mitosis
+        next_generation << cell
+      end
     end
 
   end

@@ -3,8 +3,12 @@ module GameOfLife
 
     def evolve
       evolution = Evolution.new(self)
-      evolution.evolve
+      evolution.evolutionary_process
       evolution.next_generation
+    end
+
+    def adjusting
+
     end
 
   end
