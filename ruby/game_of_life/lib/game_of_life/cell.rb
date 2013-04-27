@@ -9,16 +9,20 @@ module GameOfLife
       @status = status
     end
 
+    def neighbors_positions
+      [:n, :s, :e, :w, :ne, :nw, :se, :sw]
+    end
+
+    def neighbors_ids
+      neighbors_positions.map{ |p| send(p) }.compact
+    end
+
     def neighbors
-      [n, s, e, w, ne, nw, se, sw]
+      neighbors_ids.map{ |i| ObjectSpace._id2ref(i) }
     end
 
     def neighbors_alive
-      neighbors.map{ |n| n.status.to_i }.reduce(&:+)
-    end
-
-    def neighbors_positions
-      [:n, :s, :e, :w, :ne, :nw, :se, :sw]
+      neighbors.map{ |n| n.status rescue 0 }.reduce(&:+)
     end
 
     def inverse_position
@@ -35,7 +39,7 @@ module GameOfLife
     end
 
     def add_neighbor neighbor, position
-      send(:"#{position.to_s}=", neighbor)
+      send(:"#{position.to_s}=", neighbor.object_id)
     end
 
     def mitosis
