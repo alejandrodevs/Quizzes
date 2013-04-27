@@ -10,7 +10,7 @@ module GameOfLife
     end
 
     def neighbors_positions
-      [:n, :s, :e, :w, :ne, :nw, :se, :sw]
+      [:n, :nw, :w, :sw, :s, :se, :e, :ne]
     end
 
     def neighbors_ids

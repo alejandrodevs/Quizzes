@@ -9,7 +9,6 @@ module GameOfLife
 
     def new_generation
       evolve_generation
-      adjusting_generation
       generation
     end
 
@@ -20,18 +19,6 @@ module GameOfLife
     def evolve_generation
       generation.each_with_index do |cell, x|
         cell.status = next_statuses[x]
-      end
-    end
-
-    def adjusting_generation
-      generation.each do |cell|
-        adjusting_neighbors(cell) if cell.status == 1
-      end
-    end
-
-    def adjusting_neighbors cell
-      cell.neighbors_positions.each do |pos|
-
       end
     end
 
