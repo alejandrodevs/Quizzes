@@ -22,20 +22,7 @@ module GameOfLife
     end
 
     def neighbors_alive
-      neighbors.map{ |n| n.status rescue 0 }.reduce(&:+)
-    end
-
-    def inverse_position
-      {
-        :n  => :s,
-        :s  => :n,
-        :e  => :w,
-        :w  => :e,
-        :ne => :sw,
-        :nw => :se,
-        :se => :nw,
-        :sw => :ne
-      }
+      neighbors.map(&:status).reduce(&:+)
     end
 
     def add_neighbor neighbor, position
