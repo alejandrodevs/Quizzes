@@ -8,17 +8,17 @@ module GameOfLife
     end
 
     def new_generation
-      evolve_generation
+      evolution
       generation
     end
 
-    def next_statuses
-      @next_status ||= generation.map(&:dup).map{ |c| c.mitosis }
+    def statuses
+      @statuses ||= generation.map(&:dup).map(&:mitosis)
     end
 
-    def evolve_generation
+    def evolution
       generation.each_with_index do |cell, x|
-        cell.status = next_statuses[x]
+        cell.status = statuses[x]
       end
     end
 
